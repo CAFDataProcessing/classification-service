@@ -43,26 +43,7 @@
         <swagger-codegen-modelPackage>com.github.cafdataprocessing.classification.service.client.model</swagger-codegen-modelPackage>
         <swagger-codegen-apiPackage>com.github.cafdataprocessing.classification.service.client.api</swagger-codegen-apiPackage>
         <swagger-codegen-invokerPackage>com.github.cafdataprocessing.classification.service.client</swagger-codegen-invokerPackage>
-
-        <!--TODO remove before move to github -->
-        <corporate.repository.manager.url>http://rh7-artifactory.svs.hpeswlab.net:8081/artifactory</corporate.repository.manager.url>
-        <skipLocalStaging>true</skipLocalStaging>
     </properties>
-
-
-    <!-- TODO remove before move to github, distribute to the corporate repository manager -->
-    <distributionManagement>
-        <repository>
-            <id>HPEreleases</id>
-            <name>HPE Sunnyvale Artifactory Releases</name>
-            <url>${corporate.repository.manager.url}/libs-release-local</url>
-        </repository>
-        <snapshotRepository>
-            <id>HPEsnapshots</id>
-            <name>HPE Sunnyvale Artifactory Snapshots</name>
-            <url>${corporate.repository.manager.url}/libs-snapshot-local</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <dependencies>
         <dependency>
