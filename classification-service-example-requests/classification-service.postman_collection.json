@@ -1,0 +1,1213 @@
+{
+	"variables": [],
+	"info": {
+		"name": "classification-service",
+		"_postman_id": "821a0282-9a93-406c-f069-e5393feef66b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Classification Rule Conditions",
+			"description": "",
+			"item": [
+				{
+					"name": "CreateClassificationRuleCondition",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/25/conditions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Test Classification Rule Condition\",\r\n  \"additional\": {\r\n    \"type\": \"boolean\",\r\n    \"operator\": \"and\",\r\n    \"children\": [{\r\n      \"name\": \"Classification Test\",\r\n      \"additional\": {\r\n        \"type\": \"termlist\",\r\n        \"field\": \"CONTENT\",\r\n        \"value\": 255\r\n      }\r\n      },\r\n      {\r\n        \"name\": \"Dog Condition\",\r\n        \"additional\": {\r\n          \"type\": \"string\",\r\n          \"field\": \"CONTENT\",\r\n          \"value\": \"dog\",\r\n          \"operator\": \"contains\",\r\n          \"notes\": \"DOG_CONDITION\"\r\n        }\r\n      },\r\n      {\r\n        \"name\": \"Count Condition\",\r\n        \"additional\": {\r\n          \"type\": \"number\",\r\n          \"field\": \"RULE_COUNT\",\r\n          \"value\": 4,\r\n          \"operator\": \"eq\"\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClassificationRuleCondition",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/25/conditions/267",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetClassificationRuleCondition",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/29/conditions/460",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetClassificationRuleConditions",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/25/conditions?pageNum=1&pageSize=3",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Rule for Testing Create\",\n    \"description\": \"A description for Rule created 21/09/2016.\",\n  \"priority\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateClassificationRuleCondition",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/25/conditions/267",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 267,\n  \"name\": \"Test Classification Rule Condition\",\n  \"additional\": {\n    \"order\": 300,\n    \"notes\": null,\n    \"type\": \"boolean\",\n    \"operator\": \"and\",\n    \"children\": [\n      {\n        \"name\": \"Classification Test\",\n        \"additional\": {\n          \"order\": 100,\n          \"notes\": null,\n          \"type\": \"termlist\",\n          \"value\": 25,\n          \"field\": \"CONTENT\"\n        }\n      }]}}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Classification Rules",
+			"description": "",
+			"item": [
+				{
+					"name": "CreateClassificationRule",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Rule for Testing Create\",\n    \"description\": \"A description for Rule created 22/09/2016.\",\n\t\"priority\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClassificationRule",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/28",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Rule for Testing Create\",\n    \"description\": \"A description for Rule created 21/09/2016.\",\n\t\"priority\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetClassificationRule",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/27",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Rule for Testing Create\",\n    \"description\": \"A description for Rule created 21/09/2016.\",\n\t\"priority\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetClassificationRules",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/11/rules?pageNum=1&pageSize=3",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Rule for Testing Create\",\n    \"description\": \"A description for Rule created 21/09/2016.\",\n\t\"priority\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateClassificationRule",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/11/rules/18",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Rule for Testing Update\",\n    \"description\": \"A description for Rule created 22/09/2016.\",\n\t\"priority\": 2\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Classifications",
+			"description": "",
+			"item": [
+				{
+					"name": "CreateClassification",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification created 20/09/2016\",\n    \"type\": \"default\",\n    \"additional\": {\n    \t\"type\": \"boolean\",\n    \t\"operator\": \"and\",\n\t    \"children\": [\n\t      {\n\t        \"name\": \"Cat Condition\",\n\t        \"description\": \"Condition to find cat.\",\n\t        \"additional\": {\n\t          \"type\": \"string\",\n\t          \"field\": \"CONTENT\",\n\t          \"value\": \"cat\",\n\t          \"operator\": \"contains\",\n\t          \"notes\": \"CAT_CONDITION\"\n\t        }\n\t      },\n\t      {\n\t        \"name\": \"Count Condition\",\n\t        \"description\": \"Checks the count.\",\n\t        \"additional\": {\n\t          \"type\": \"number\",\n\t          \"field\": \"COUNT\",\n\t          \"value\": 2,\n\t          \"operator\": \"eq\"\n\t        }\n\t      }\n\t    ]\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CreateClassification TermList Condition",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification created 20/09/2016\",\n    \"type\": \"default\",\n    \"additional\": {\n    \t\"type\": \"termlist\",\n    \t\"field\": \"CONTENT\",\n    \t\"value\": \"300\"\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClassification",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications/22",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification created 20/09/2016\",\n    \"type\": \"default\",\n    \"additional\": {\n    \t\"type\": \"boolean\",\n    \t\"operator\": \"and\",\n\t    \"children\": [\n\t      {\n\t        \"name\": \"Cat Condition\",\n\t        \"description\": \"Condition to find cat.\",\n\t        \"additional\": {\n\t          \"type\": \"string\",\n\t          \"field\": \"CONTENT\",\n\t          \"value\": \"cat\",\n\t          \"operator\": \"contains\",\n\t          \"notes\": \"CAT_CONDITION\"\n\t        }\n\t      },\n\t      {\n\t        \"name\": \"Count Condition\",\n\t        \"description\": \"Checks the count.\",\n\t        \"additional\": {\n\t          \"type\": \"number\",\n\t          \"field\": \"COUNT\",\n\t          \"value\": 2,\n\t          \"operator\": \"eq\"\n\t        }\n\t      }\n\t    ]\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetClassification",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications/23",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification created 20/09/2016\",\n    \"type\": \"default\",\n    \"additional\": {\n    \t\"type\": \"boolean\",\n    \t\"operator\": \"and\",\n\t    \"children\": [\n\t      {\n\t        \"name\": \"Cat Condition\",\n\t        \"description\": \"Condition to find cat.\",\n\t        \"additional\": {\n\t          \"type\": \"string\",\n\t          \"field\": \"CONTENT\",\n\t          \"value\": \"cat\",\n\t          \"operator\": \"contains\",\n\t          \"notes\": \"CAT_CONDITION\"\n\t        }\n\t      },\n\t      {\n\t        \"name\": \"Count Condition\",\n\t        \"description\": \"Checks the count.\",\n\t        \"additional\": {\n\t          \"type\": \"number\",\n\t          \"field\": \"COUNT\",\n\t          \"value\": 2,\n\t          \"operator\": \"eq\"\n\t        }\n\t      }\n\t    ]\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetClassifications",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications?pageNum=1&pageSize=5",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification created 20/09/2016\",\n    \"type\": \"default\",\n    \"additional\": {\n    \t\"type\": \"boolean\",\n    \t\"operator\": \"and\",\n\t    \"children\": [\n\t      {\n\t        \"name\": \"Cat Condition\",\n\t        \"description\": \"Condition to find cat.\",\n\t        \"additional\": {\n\t          \"type\": \"string\",\n\t          \"field\": \"CONTENT\",\n\t          \"value\": \"cat\",\n\t          \"operator\": \"contains\",\n\t          \"notes\": \"CAT_CONDITION\"\n\t        }\n\t      },\n\t      {\n\t        \"name\": \"Count Condition\",\n\t        \"description\": \"Checks the count.\",\n\t        \"additional\": {\n\t          \"type\": \"number\",\n\t          \"field\": \"COUNT\",\n\t          \"value\": 2,\n\t          \"operator\": \"eq\"\n\t        }\n\t      }\n\t    ]\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateClassification",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications/30",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test updated\",\n    \"description\": \"An updated description\",\n    \"type\": \"default\",\n    \"additional\": {\n    \t\"type\": \"boolean\",\n    \t\"operator\": \"and\",\n\t    \"children\": [\n\t      {\n\t        \"name\": \"Cat Condition update\",\n\t        \"description\": \"Condition to find cat updated.\",\n\t        \"additional\": {\n\t          \"order\": 100,\n\t          \"notes\": \"CAT_CONDITION_UPDATED\",\n\t          \"type\": \"string\",\n\t          \"value\": \"catty\",\n\t          \"operator\": \"contains\",\n\t          \"field\": \"CAT\"\n\t        }\n\t      },\n\t      {\n\t        \"name\": \"Count Condition\",\n\t        \"description\": \"Checks the count updated.\",\n\t        \"additional\": {\n\t          \"type\": \"number\",\n\t          \"field\": \"COUNT\",\n\t          \"value\": 3,\n\t          \"operator\": \"eq\"\n\t        }\n\t      }\n\t    ]\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateClassification Term List",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications/40",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Classification Test\",\n\t\"description\": \"A description Classification updated 22/09/2016\",\n\t\"type\": \"default\",\n\t\"additional\": {\n\t\t\"type\": \"boolean\",\n\t\t\"operator\": \"and\",\n\t\t\"children\": [{\n\t\t\t\"name\": \"Classification Test\",\n\t\t\t\"additional\": {\n\t\t\t\t\"type\": \"termlist\",\n\t\t\t\t\"field\": \"CONTENT\",\n\t\t\t\t\"value\": 25\n\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"Cat Condition\",\n\t\t\t\t\"additional\": {\n\t\t\t\t\t\"type\": \"string\",\n\t\t\t\t\t\"field\": \"CONTENT\",\n\t\t\t\t\t\"value\": \"cat\",\n\t\t\t\t\t\"operator\": \"contains\",\n\t\t\t\t\t\"notes\": \"CAT_CONDITION\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"Count Condition Updated\",\n\t\t\t\t\"additional\": {\n\t\t\t\t\t\"type\": \"boolean\",\n\t\t\t\t\t\"operator\": \"and\",\n\t\t\t\t\t\"children\": [{\n\t\t\t\t\t\t\"name\": \"Classification Test\",\n\t\t\t\t\t\t\"additional\": {\n\t\t\t\t\t\t\t\"type\": \"termlist\",\n\t\t\t\t\t\t\t\"field\": \"CONTENT\",\n\t\t\t\t\t\t\t\"value\": 26\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Classification Test updated\",\n\t\t\t\t\t\t\"additional\": {\n\t\t\t\t\t\t\t\"type\": \"termlist\",\n\t\t\t\t\t\t\t\"field\": \"CONTENT\",\n\t\t\t\t\t\t\t\"value\": 27\n\t\t\t\t\t\t}\n\t\t\t\t\t}]\n\t\t\t\t}\n\t\t}]\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rule Classifications",
+			"description": "",
+			"item": [
+				{
+					"name": "CreateRuleClassification",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/26/classifications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"classificationId\": 43\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteRuleClassification",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/26/classifications/67",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"classificationId\": 23\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteRuleClassifications",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/26/classifications",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"classificationId\": 23\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetRuleClassification",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/26/classifications/78",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"classificationId\": 23\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetRuleClassifications",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/28/classifications?pageNum=1&pageSize=3",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"classificationId\": 23\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRuleClassification",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/26/classifications/60",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"classificationId\": 23\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TermLists",
+			"description": "",
+			"item": [
+				{
+					"name": "CreateTermList",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Term List Test\",\n    \"description\": \"A description for term list created 13/09/2016.\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTermList",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/24",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetTermList",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/23",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 03/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetTermLists",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/?pageSize=3&pageNum=5",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 03/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTermList",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/31",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Updated name\",\n    \"description\": \"Term List updated\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Terms",
+			"description": "",
+			"item": [
+				{
+					"name": "DeleteTerm",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/30/terms/1638",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"termIds\": []\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTerms",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/768/terms",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"termIds\": [2304, 2303]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTerms_Int64",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/1/terms",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"termIds\": [1234567890123456789, 1234567890123456783, 1234567890123456781]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTerms (all)",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/25/terms",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"terms\": [127]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetTerm",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/30/terms/1638",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 03/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetTerms",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/768/terms?pageSize=10&pageNum=1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 03/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetTerms (Bulk)",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/29/terms?pageSize=5&pageNum=1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 03/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTerm",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/30/terms/1638",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"expression\": \"rat_updated_again\",\n  \"type\": \"regex\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTerms",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/768/terms",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"terms\": [{\n      \"expression\": \"dog\",\n      \"type\":\"text\"},\n      {\n      \"expression\": \"cat\",\n      \"type\":\"text\"},\n      {\n      \"expression\": \"mouse\",\n      \"type\":\"text\"}\n     ],\n    \"overwrite\":true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTerms (Bulk)",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/termlists/29/terms",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"terms\": [{\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"dog\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"mat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"bat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"wat\",\n    \t\"type\":\"text\"\n    }\n    ,\n    {\n    \t\"expression\": \"rat\",\n    \t\"type\":\"text\"\n    },\n    {\n    \t\"expression\": \"cat\",\n    \t\"type\":\"text\"\n    }\n     ],\n    \"overwrite\":false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Workflow",
+			"description": "",
+			"item": [
+				{
+					"name": "CreateWorkflow",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description for workflow created 12/09/2016.\",\n    \"notes\": \"CLASSIFICATION_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteWorkflow",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/10",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 05/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetWorkflow",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/6",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 03/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetWorkflow_Int64",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/6",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 03/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetWorkflows",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/?pageSize=10&pageNum=1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Z Workflow today\",\n    \"description\": \"A description for workflow created 03/08/2016.\",\n    \"notes\": \"SERVICE_TEST\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateWorkflow",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/10",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Classification Test\",\n    \"description\": \"An updated description for workflow created 12/09/2016.\",\n    \"notes\": \"CLASSIFICATION_TEST_UPDATED\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HealthCheck",
+			"request": {
+				"url": "http://127.0.0.1:16000/classification/v1/healthcheck",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workflowId\": 6,\n    \"name\": \"My new sequence 2\",\n    \"description\": \"A description for the new sequence 2.\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SwaggerContract",
+			"request": {
+				"url": "http://127.0.0.1:16000/classification/v1/swagger.yaml",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workflowId\": 6,\n    \"name\": \"My new sequence 2\",\n    \"description\": \"A description for the new sequence 2.\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SwaggerUI",
+			"request": {
+				"url": "http://127.0.0.1:16000/classification-ui",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workflowId\": 6,\n    \"name\": \"My new sequence 2\",\n    \"description\": \"A description for the new sequence 2.\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
