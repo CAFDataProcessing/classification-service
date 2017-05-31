@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.github.cafapi</groupId>
         <artifactId>caf-common</artifactId>
-        <version>1.11.0-SNAPSHOT</version>
+        <version>1.11.0-218</version>
         <relativePath />
     </parent>
     
@@ -95,8 +95,8 @@
     </properties>
     
     <scm>
-        <connection>scm:git:https://github.hpe.com/caf-staging/classification-service.git</connection>
-        <developerConnection>scm:git:https://github.hpe.com/caf-staging/classification-service.git</developerConnection>
-        <url>https://github.hpe.com/caf-staging/classification-service.git</url>
+        <connection>scm:git:https://github.com/CAFDataProcessing/classification-service.git</connection>
+        <developerConnection>scm:git:https://github.com/CAFDataProcessing/classification-service.git</developerConnection>
+        <url>https://github.com/CAFDataProcessing/classification-service.git</url>
     </scm>
 </project>
