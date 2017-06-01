@@ -32,7 +32,7 @@
     <artifactId>classification-service-client</artifactId>
     <packaging>jar</packaging>
     <!-- parent project is not the actual repository aggregator so cannot inherit version from parent -->
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <name>classification-service-client</name>
     <description>Generates a Java library that can be used to contact the Classification Service API.</description>
