@@ -91,7 +91,8 @@
     </modules>
 
     <properties>
-        <caf.corepolicy.version>1.0.0-SNAPSHOT</caf.corepolicy.version>
+        <caf.corepolicy.version>1.0.0-4</caf.corepolicy.version>
+        <container.policy.admin.name>cafdataprocessing/policy-admin-elasticsearch:1.0.0</container.policy.admin.name>
     </properties>
     
     <scm>

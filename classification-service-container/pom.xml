@@ -34,7 +34,6 @@
         <classificationservice.url>http://${docker.host.address}:${classificationservice.port}/classification/v1</classificationservice.url>
 
         <container.classification.service.name>cafinternal/prereleases:classification-service-${project.version}</container.classification.service.name>
-        <container.policy.admin.name>cafinternal/prereleases:policy-admin-elasticsearch-${caf.corepolicy.version}</container.policy.admin.name>
 
         <hibernate.user>postgres</hibernate.user>
         <hibernate.password>root</hibernate.password>
