@@ -2,7 +2,7 @@
 
 ## Format
 
-The input JSON file is expected to define a single workflow, including all its processing rules, conditions and actions. Objects and their properties are supported as defined in the Classification API contract, [here](https://pages.github.hpe.com/caf/data-processing-service/pages/en-us/Classification/API), differing where noted below.
+The input JSON file is expected to define a single workflow, including all its processing rules, conditions and actions. Objects and their properties are supported as defined in the Classification API contract, [here](https://cafdataprocessing.github.io/data-processing-service/pages/en-us/Classification/API), differing where noted below.
 
 ### Workflow
 
