@@ -1,5 +1,5 @@
-application/node_modules/
-container/target/
+classification-service-core/node_modules/
+classification-service-core/ui
 **/target/
 classification-service-contract/src/main/resources/com/hpe/caf/classification/service/contract/swagger.yaml
 classification-service-contract/src/main/resources/com/github/cafdataprocessing/classification/service/contract/swagger.yaml
