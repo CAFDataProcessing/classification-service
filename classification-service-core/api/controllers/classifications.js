@@ -30,6 +30,7 @@ function createClassification(req, response, next){
   var project_id = projectIdProvider.getProjectId(null, req);
   var createParams = {
     additional: req.swagger.params.newClassification.value.additional,
+    classificationTarget: req.swagger.params.newClassification.value.classificationTarget,
     description: req.swagger.params.newClassification.value.description,
     name: req.swagger.params.newClassification.value.name,
     project_id: project_id,
@@ -78,6 +79,7 @@ function updateClassification(req, response, next){
   var project_id = projectIdProvider.getProjectId(null, req);
   var updateParams = {
     additional: req.swagger.params.updatedClassification.value.additional,
+    classificationTarget: req.swagger.params.updatedClassification.value.classificationTarget,
     description: req.swagger.params.updatedClassification.value.description,
     id: req.swagger.params.id.value,
     name: req.swagger.params.updatedClassification.value.name,

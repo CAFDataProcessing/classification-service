@@ -50,12 +50,14 @@ function create(createParams){
   var builtClassification;
   //keep condition around after creation so it can be easily updated
   var conditionForUpdate;
-  var createdPolicyId;
+  var createdPolicyId;  
   
-  //create condition before Policy as it is more likely to fail if caller provides invalid 'additional' property
-  classificationApiToPolicy.updateClassificationConditionAdditionalToPolicyForm(createParams);
+  //translate any classification API specific options to policy API equivalents
+  //e.g. map classificationTarget to the include_descendants and target properties that policy API recognizes
+  classificationApiToPolicy.updateClassificationToPolicyForm(createParams);
   classificationsHelper.markConditionAsClassification(createParams);
   
+  //create condition before Policy as it is more likely to fail if caller provides invalid 'additional' property
   //check that any Term Lists used in the Conditions exist
   var termListIdsToCheck = classificationsHelper.getTermListIdsOnClassification(createParams);
   var checkTermListsValidPromise;
@@ -368,8 +370,11 @@ function update(updateParams){
     logger.debug("Retrieved Classification information to use in updating. Policy ID: "+updateParams.id +" & Condition ID: "+conditionForUpdate.id);
     
     policyForUpdate.description = classificationsHelper.buildPolicyDescriptionFromObject(updateParams);
+    conditionForUpdate.classificationTarget = updateParams.classificationTarget;
     conditionForUpdate.additional = updateParams.additional;
-    classificationApiToPolicy.updateClassificationConditionAdditionalToPolicyForm(conditionForUpdate);
+    //translate any classification API specific options to policy API equivalents
+    //e.g. map classificationTarget to the include_descendants and target properties that policy API recognizes
+    classificationApiToPolicy.updateClassificationToPolicyForm(conditionForUpdate);
     logger.debug(function(){return "Caller 'additional' property updated to Policy API expected form: "+strUtils.getString(conditionForUpdate);});
     
     var updatePolicyPromise = policyModel.update(updateParams.project_id, policyForUpdate);

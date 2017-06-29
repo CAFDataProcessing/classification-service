@@ -14,7 +14,7 @@
 				{
 					"name": "CreateClassificationRuleCondition",
 					"request": {
-						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/25/conditions",
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/3/rules/3/conditions",
 						"method": "POST",
 						"header": [
 							{
@@ -145,7 +145,7 @@
 				{
 					"name": "CreateClassificationRule",
 					"request": {
-						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules",
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/3/rules",
 						"method": "POST",
 						"header": [
 							{
@@ -161,7 +161,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Rule for Testing Create\",\n    \"description\": \"A description for Rule created 22/09/2016.\",\n\t\"priority\": 1\n}"
+							"raw": "{\n\t\"name\": \"Rule for Testing Create\",\n    \"description\": \"A description for Rule created 06/2017.\",\n\t\"priority\": 1\n}"
 						},
 						"description": ""
 					},
@@ -292,7 +292,32 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification created 20/09/2016\",\n    \"type\": \"default\",\n    \"additional\": {\n    \t\"type\": \"boolean\",\n    \t\"operator\": \"and\",\n\t    \"children\": [\n\t      {\n\t        \"name\": \"Cat Condition\",\n\t        \"description\": \"Condition to find cat.\",\n\t        \"additional\": {\n\t          \"type\": \"string\",\n\t          \"field\": \"CONTENT\",\n\t          \"value\": \"cat\",\n\t          \"operator\": \"contains\",\n\t          \"notes\": \"CAT_CONDITION\"\n\t        }\n\t      },\n\t      {\n\t        \"name\": \"Count Condition\",\n\t        \"description\": \"Checks the count.\",\n\t        \"additional\": {\n\t          \"type\": \"number\",\n\t          \"field\": \"COUNT\",\n\t          \"value\": 2,\n\t          \"operator\": \"eq\"\n\t        }\n\t      }\n\t    ]\n  }\n}"
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification created 20/09/2016\",\n    \"type\": \"default\",\n    \"additional\": {\n      \"type\": \"boolean\",\n      \"operator\": \"and\",\n      \"children\": [\n        {\n          \"name\": \"Cat Condition\",\n          \"description\": \"Condition to find cat.\",\n          \"additional\": {\n            \"type\": \"string\",\n            \"field\": \"CONTENT\",\n            \"value\": \"cat\",\n            \"operator\": \"contains\",\n            \"notes\": \"CAT_CONDITION\"\n          }\n        },\n        {\n          \"name\": \"Count Condition\",\n          \"description\": \"Checks the count.\",\n          \"additional\": {\n            \"type\": \"number\",\n            \"field\": \"COUNT\",\n            \"value\": 2,\n            \"operator\": \"eq\"\n          }\n        }\n      ]\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CreateClassification target ALL",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification created 06/2017\",\n    \"type\": \"default\",\n    \"classificationTarget\": \"ALL\",\n    \"additional\": {\n      \"type\": \"boolean\",\n      \"operator\": \"and\",\n      \"children\": [\n        {\n          \"name\": \"Cat Condition\",\n          \"description\": \"Condition to find cat.\",\n          \"additional\": {\n            \"type\": \"string\",\n            \"field\": \"CONTENT\",\n            \"value\": \"cat\",\n            \"operator\": \"contains\",\n            \"notes\": \"CAT_CONDITION\"\n          }\n        },\n        {\n          \"name\": \"Count Condition\",\n          \"description\": \"Checks the count.\",\n          \"additional\": {\n            \"type\": \"number\",\n            \"field\": \"COUNT\",\n            \"value\": 2,\n            \"operator\": \"eq\"\n          }\n        }\n      ]\n  }\n}"
 						},
 						"description": ""
 					},
@@ -351,7 +376,7 @@
 				{
 					"name": "GetClassification",
 					"request": {
-						"url": "http://127.0.0.1:16000/classification/v1/classifications/23",
+						"url": "http://127.0.0.1:16000/classification/v1/classifications/13",
 						"method": "GET",
 						"header": [
 							{
@@ -447,6 +472,31 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "UpdateClassification copy",
+					"request": {
+						"url": "http://127.0.0.1:16000/classification/v1/classifications/13",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "project_id",
+								"value": "DefaultProjectId",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description Classification updated 06/2017\",\n    \"type\": \"default\",\n    \"classificationTarget\": \"ALL\",\n    \"additional\": {\n      \"type\": \"boolean\",\n      \"operator\": \"and\",\n      \"children\": [\n        {\n          \"name\": \"Cat Condition\",\n          \"description\": \"Condition to find cat.\",\n          \"additional\": {\n            \"type\": \"string\",\n            \"field\": \"CONTENT\",\n            \"value\": \"cat\",\n            \"operator\": \"contains\",\n            \"notes\": \"CAT_CONDITION\"\n          }\n        },\n        {\n          \"name\": \"Count Condition\",\n          \"description\": \"Checks the count.\",\n          \"additional\": {\n            \"type\": \"number\",\n            \"field\": \"COUNT\",\n            \"value\": 2,\n            \"operator\": \"eq\"\n          }\n        }\n      ]\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -457,7 +507,7 @@
 				{
 					"name": "CreateRuleClassification",
 					"request": {
-						"url": "http://127.0.0.1:16000/classification/v1/workflows/12/rules/26/classifications",
+						"url": "http://127.0.0.1:16000/classification/v1/workflows/3/rules/3/classifications",
 						"method": "POST",
 						"header": [
 							{
@@ -473,7 +523,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"classificationId\": 43\n}"
+							"raw": "{\n\t\"classificationId\": 8\n}"
 						},
 						"description": ""
 					},
@@ -1016,7 +1066,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description for workflow created 12/09/2016.\",\n    \"notes\": \"CLASSIFICATION_TEST\"\n}"
+							"raw": "{\n    \"name\": \"Classification Test\",\n    \"description\": \"A description for workflow created 06/2017.\",\n    \"notes\": \"CLASSIFICATION_TEST\"\n}"
 						},
 						"description": ""
 					},
