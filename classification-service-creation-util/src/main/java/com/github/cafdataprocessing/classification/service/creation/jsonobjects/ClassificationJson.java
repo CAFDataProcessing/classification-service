@@ -34,7 +34,7 @@ public class ClassificationJson {
                               @JsonProperty(value= "description")String description,
                               @JsonProperty(value= "type")String type,
                          @JsonProperty(value= "additional", required = true)ConditionAdditionalJson additional,
-                              @JsonProperty(value= "classification_target")BaseClassification.ClassificationTargetEnum classification_target){
+                              @JsonProperty(value= "classificationTarget")BaseClassification.ClassificationTargetEnum classification_target){
         this.name = name;
         this.description = description;
         this.type = type;
