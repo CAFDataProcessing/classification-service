@@ -366,7 +366,11 @@
                                 </assembly>
                                 <workdir>/maven/classification-service</workdir>
                                 <runCmds>
-                                    <runCmd>npm install</runCmd>
+                                    <runCmd>
+                                        http_proxy=${env.HTTP_PROXY} \
+                                        https_proxy=${env.HTTPS_PROXY} \
+                                        npm install
+                                    </runCmd>
                                 </runCmds>
                                 <cmd>node app.js</cmd>
                             </build>
