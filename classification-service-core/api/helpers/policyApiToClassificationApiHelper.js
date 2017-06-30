@@ -37,10 +37,12 @@ function buildClassificationFromCondition(condition, classification){
   var classificationToReturn = classification !== null && classification !== undefined ? classification : {};
   
   //need to extract the restructured 'additional' from a built Condition
-  var builtCondition = buildConditionFromPolicyCondition(condition);  
+  var builtCondition = buildConditionFromPolicyCondition(condition);
+  classificationToReturn.classificationTarget = convertPolicyPropertiesToClassificationTarget(condition);
   classificationToReturn.additional = builtCondition.additional;
   //remove any notes field set on top level condition as it is reserved for use by API and shouldn't be exposed
   delete classificationToReturn.additional.notes;
+    
   return classificationToReturn;
 }
 
@@ -55,7 +57,8 @@ function buildClassificationFromPolicy(policy, classification){
   catch(error){
     logger.error("Failed to extract properties for Classification from Policy provided. Policy: "+ JSON.stringify(policy) + " Error was: "+error);
     throw Error("Unable to construct Classification");
-  }
+  }  
+  
   return classificationToReturn;
 }
 
@@ -202,6 +205,7 @@ function buildConditionFromPolicyCondition(policyCondition, condition){
       logger.error("Did not recognize type of condition on Policy API Condition when converting to Classification API Condition. Condition was: "+JSON.stringify(policyCondition));
       throw "Unrecognised Condition type returned.";
   }
+  
   return conditionToReturn;  
 }
 
@@ -245,4 +249,38 @@ function buildTermListConditionFromPolicyLexiconAdditional(policyApi, classifica
   classificationCondition.type = 'termlist';
   classificationCondition.value = policyApi.value;
   classificationCondition.field = policyApi.field;
+}
+
+//Takes a policy condition and examines the properties to determine the classificationTarget value represented, returning this classificationTarget value.
+function convertPolicyPropertiesToClassificationTarget(condition){
+  var includeDescendantsValue = condition.additional.include_descendants;
+  var targetValue = condition.additional.target.toUpperCase();
+  
+  if(includeDescendantsValue===true){
+    if(targetValue==="ALL"){
+      return "ALL";
+    }
+    else if(targetValue==="CHILDREN"){
+      return "CHILDREN";
+    }
+    else if(targetValue==="CONTAINER"){
+      return "CONTAINER";
+    }
+    else {
+      logger.error("Did not recognize target value set on Policy API Condition when converting to Classification API Classification. Condition was: "+JSON.stringify(condition));
+      throw "Error trying to determine Condition classificationTarget set.";
+    }
+  }
+  
+  if(targetValue==="ALL"){
+    return "CONTAINER_AND_IMMEDIATE_CHILDREN";
+  }
+  else if(targetValue==="CHILDREN"){
+    return "IMMEDIATE_CHILDREN";
+  }
+  else if(targetValue==="CONTAINER"){
+    return "CONTAINER";
+  }
+  logger.error("Did not recognize target value set on Policy API Condition when converting to Classification API Classification. Condition was: "+JSON.stringify(condition));
+  throw "Error trying to determine Condition classificationTarget set.";    
 }

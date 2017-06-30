@@ -159,6 +159,53 @@ public class ClassificationsIT {
         }
     }
 
+    @Test(description = "Creates classification with classificationTarget set to a non-default value, retrieves it and " +
+            "updates it, verifying each value is returned as expected.")
+    public void createGetAndUpdateClassificationTargetForClassification() throws ApiException {
+        BaseClassification classification_1 = ObjectsInitializer.initializeClassification();
+        NumberConditionAdditional numberConditionAdditional = ObjectsInitializer.initializeNumberConditionAdditional();
+        classification_1.setAdditional(numberConditionAdditional);
+
+        //create with the default value and verify it is returned as expected
+        ExistingClassification createdClassification = classificationsApi.createClassification(projectId, classification_1);
+        compareClassifications(classification_1, createdClassification);
+
+        ExistingClassification retrievedClassification = classificationsApi.getClassification(projectId, createdClassification.getId());
+        Assert.assertEquals(retrievedClassification.getId(), createdClassification.getId(),
+                "ID of retrieved classification should match that requested.");
+        compareClassifications(classification_1, retrievedClassification);
+
+        updateRetrieveAndCompareClassificationTarget(createdClassification.getId(), classification_1,
+                BaseClassification.ClassificationTargetEnum.CHILDREN);
+        updateRetrieveAndCompareClassificationTarget(createdClassification.getId(), classification_1,
+                BaseClassification.ClassificationTargetEnum.ALL);
+        updateRetrieveAndCompareClassificationTarget(createdClassification.getId(), classification_1,
+                BaseClassification.ClassificationTargetEnum.CONTAINER);
+        updateRetrieveAndCompareClassificationTarget(createdClassification.getId(), classification_1,
+                BaseClassification.ClassificationTargetEnum.CONTAINER_AND_IMMEDIATE_CHILDREN);
+        updateRetrieveAndCompareClassificationTarget(createdClassification.getId(), classification_1,
+                BaseClassification.ClassificationTargetEnum.IMMEDIATE_CHILDREN);
+    }
+
+    /**
+     * Updates a classification with a new value for classification target, then retrieves the classification and compares
+     * retrieved value properties are as expected.
+     * @param classificationId ID of classification to update.
+     * @param classificationForUpdate Classification object with all its properties set to use in update e.g. name. classificationTarget on this will be ignored.
+     * @param classificationTarget New value of classification target to set on the passed classification object that will be used in update.
+     * @throws ApiException If error during communication with classification API
+     */
+    private void updateRetrieveAndCompareClassificationTarget(Long classificationId, BaseClassification classificationForUpdate,
+                                                              BaseClassification.ClassificationTargetEnum classificationTarget) throws ApiException {
+        classificationForUpdate.setClassificationTarget(classificationTarget);
+        classificationsApi.updateClassification(projectId, classificationId, classificationForUpdate);
+
+        ExistingClassification retrievedClassification = classificationsApi.getClassification(projectId, classificationId);
+        Assert.assertEquals(retrievedClassification.getId(), classificationId,
+                "ID of retrieved classification should match that requested.");
+        compareClassifications(classificationForUpdate, retrievedClassification);
+    }
+
     @Test(description = "Creates classification with a string condition, retrieves it and updates it.")
     public void createGetAndUpdateStringClassification() throws ApiException {
         BaseClassification classification_1 = ObjectsInitializer.initializeClassification();
@@ -353,14 +400,14 @@ public class ClassificationsIT {
                 "Classification description should be as expected.");
         Assert.assertEquals(retrievedClassification.getType(), expectedClassification.getType(),
                 "Classification type should be as expected.");
+        Assert.assertEquals(retrievedClassification.getClassificationTarget(), expectedClassification.getClassificationTarget(),
+                "Classification classificationTarget should be as expected.");
 
         ConditionCommon retrievedAdditional = mapper.convertValue(retrievedClassification.getAdditional(), ConditionCommon.class);
         ConditionCommon expectedAdditional = mapper.convertValue(expectedClassification.getAdditional(), ConditionCommon.class);
         AdditionalPropertyComparison.compareAdditional(expectedAdditional.getType(), retrievedAdditional.getType(), expectedClassification.getAdditional(),
                 retrievedClassification.getAdditional());
     }
-
-
 
     /**
      * Search the retrieved classifications passed for the occurrence of a set of classifications.

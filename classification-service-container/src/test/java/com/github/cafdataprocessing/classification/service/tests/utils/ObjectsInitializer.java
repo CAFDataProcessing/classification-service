@@ -73,6 +73,7 @@ public class ObjectsInitializer {
         classification.setName("name_"+UUID.randomUUID().toString());
         classification.setDescription("description_"+UUID.randomUUID().toString());
         classification.setType("type_"+UUID.randomUUID().toString());
+        //allowing classificationTarget to use default value
         return classification;
     }
 

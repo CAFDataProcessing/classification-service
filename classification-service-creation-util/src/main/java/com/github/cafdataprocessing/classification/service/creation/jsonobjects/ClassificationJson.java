@@ -28,15 +28,18 @@ public class ClassificationJson {
     public String description;
     public String type;
     public ConditionAdditionalJson additional;
+    public BaseClassification.ClassificationTargetEnum classification_target;
 
     public ClassificationJson(@JsonProperty(value= "name")String name,
                               @JsonProperty(value= "description")String description,
                               @JsonProperty(value= "type")String type,
-                         @JsonProperty(value= "additional", required = true)ConditionAdditionalJson additional){
+                         @JsonProperty(value= "additional", required = true)ConditionAdditionalJson additional,
+                              @JsonProperty(value= "classificationTarget")BaseClassification.ClassificationTargetEnum classification_target){
         this.name = name;
         this.description = description;
         this.type = type;
         this.additional = additional;
+        this.classification_target = classification_target;
     }
 
     public BaseClassification toApiBaseClassification(TermListNameResolver termListNameResolver){
@@ -45,6 +48,9 @@ public class ClassificationJson {
         classification.setDescription(this.description);
         classification.setType(this.type);
         classification.setAdditional(TermListNameResolver.updateTermListConditionNamesToIds(this.additional, termListNameResolver));
+        if(this.classification_target!=null) {
+            classification.setClassificationTarget(this.classification_target);
+        }
         return classification;
     }
 }

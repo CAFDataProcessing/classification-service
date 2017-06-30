@@ -79,6 +79,7 @@ e.g.
 {
   "name": "My classification",
   "description": "An example classification",
+  "classificationTarget": "ALL",
   "additional": {
     "type": "boolean",
     "operator": "OR",

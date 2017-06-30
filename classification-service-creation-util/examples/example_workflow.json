@@ -31,6 +31,7 @@
 	"classifications": [{
 		"name": "Travel Documents",
 		"description": "Documents relating to travel such as confirmations, tickets and itineraries.",
+		"classificationTarget": "CONTAINER_AND_IMMEDIATE_CHILDREN",
 		"additional": {
 			"type": "boolean",
 			"operator": "OR",
