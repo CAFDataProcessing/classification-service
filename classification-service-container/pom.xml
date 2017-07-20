@@ -33,7 +33,7 @@
         <classificationservice.policyapi.entrypath>/corepolicy/</classificationservice.policyapi.entrypath>
         <classificationservice.url>http://${docker.host.address}:${classificationservice.port}/classification/v1</classificationservice.url>
 
-        <container.classification.service.name>cafinternal/prereleases:classification-service-${project.version}</container.classification.service.name>
+        <container.classification.service.name>${dockerDataProcessingOrg}classification-service${dockerProjectVersion}</container.classification.service.name>
 
         <hibernate.user>postgres</hibernate.user>
         <hibernate.password>root</hibernate.password>

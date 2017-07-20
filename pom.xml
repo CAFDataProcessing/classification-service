@@ -93,6 +93,9 @@
     <properties>
         <caf.corepolicy.version>1.0.0-4</caf.corepolicy.version>
         <container.policy.admin.name>cafdataprocessing/policy-admin-elasticsearch:1.0.0</container.policy.admin.name>
+        <dockerHubOrganization>cafdataprocessing</dockerHubOrganization>
+        <dockerDataProcessingOrg>${dockerImagePrefix}${dockerHubOrganization}${dockerOrgSeperator}</dockerDataProcessingOrg>
+        <dockerProjectVersion>${dockerVersionSeperator}${project.version}</dockerProjectVersion>
     </properties>
     
     <scm>
