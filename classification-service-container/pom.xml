@@ -31,7 +31,8 @@
 
     <properties>
         <classificationservice.policyapi.entrypath>/corepolicy/</classificationservice.policyapi.entrypath>
-        <classificationservice.url>http://${docker.host.address}:${classificationservice.port}/classification/v1</classificationservice.url>
+        <classificationServiceHost>http://${docker.host.address}:${classificationservice.port}</classificationServiceHost>
+        <classificationservice.url>${classificationServiceHost}/classification/v1</classificationservice.url>
 
         <container.classification.service.name>${dockerDataProcessingOrg}classification-service${dockerProjectVersion}</container.classification.service.name>
 
@@ -130,6 +131,12 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.github.cafdataprocessing</groupId>
+            <artifactId>classification-service-creation-util</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <scope>test</scope>
@@ -162,7 +169,7 @@
                         <classificationservice.port>${classificationservice.port}</classificationservice.port>
                     </systemPropertyVariables>
                     <environmentVariables>
-                        <classification.webservice.host>http://${docker.host.address}:${classificationservice.port}</classification.webservice.host>
+                        <classification.webservice.host>${classificationServiceHost}</classification.webservice.host>
                     </environmentVariables>
                 </configuration>
             </plugin>

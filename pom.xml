@@ -86,8 +86,8 @@
         <module>classification-service-ui</module>
         <module>classification-service-contract</module>
         <module>classification-service-client</module>
-        <module>classification-service-creation-util</module>
         <module>classification-service-container</module>
+        <module>classification-service-creation-util</module>
     </modules>
 
     <properties>

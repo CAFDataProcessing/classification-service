@@ -21,7 +21,7 @@ import com.github.cafdataprocessing.classification.service.client.ApiClient;
  * Provides an ApiClient instance that other classes can use.
  */
 public class ApiClientProvider {
-    private static final String connectionString;
+    private static final String connectionUrl;
     private static final ApiClient apiClient = new ApiClient();
 
     private ApiClientProvider(){}
@@ -30,8 +30,8 @@ public class ApiClientProvider {
      * Initialize the apiClient that this class will provide to callers.
      */
     static {
-        connectionString = EnvironmentPropertyProvider.getWebServiceUrl();
-        apiClient.setBasePath(connectionString);
+        connectionUrl = EnvironmentPropertyProvider.getWebServiceUrl();
+        apiClient.setBasePath(connectionUrl);
     }
 
     /**
@@ -40,5 +40,13 @@ public class ApiClientProvider {
      */
     public static ApiClient getApiClient(){
         return apiClient;
+    }
+
+    /**
+     * Get the connection URL for the classification service.
+     * @return
+     */
+    public static String getApiConnectionUrl(){
+        return connectionUrl;
     }
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cafdataprocessing.classification.service.tests;
+package com.github.cafdataprocessing.classification.service.tests.core;
 
 import com.github.cafdataprocessing.classification.service.tests.utils.ApiClientProvider;
 import com.github.cafdataprocessing.classification.service.client.ApiException;
