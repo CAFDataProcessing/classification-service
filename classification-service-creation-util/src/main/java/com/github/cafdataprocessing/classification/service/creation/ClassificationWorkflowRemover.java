@@ -233,9 +233,9 @@ public class ClassificationWorkflowRemover {
 
                 removeClassificationRules(classificationRulesApi, projectId, existingWorkflowId, classificationRulesToRemove);
                 LOGGER.debug("Removed all classification rules for workflow: "+existingWorkflowId);
+                workflowsApi.deleteWorkflow(projectId, existingWorkflowId);
+                LOGGER.debug("Removed classification workflow: "+existingWorkflowId);
             }
-            workflowsApi.deleteWorkflow(projectId, existingWorkflowId);
-            LOGGER.debug("Removed classification workflow: "+existingWorkflowId);
         }
         LOGGER.info("Removed any existing classification workflows with name: "+workflowNameToRemove);
     }
