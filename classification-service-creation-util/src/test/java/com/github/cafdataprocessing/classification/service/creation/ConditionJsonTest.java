@@ -143,7 +143,7 @@ public class ConditionJsonTest {
         Assert.assertEquals(received.field, expected.field, "Field on received additional for condition is not as expected.");
         if(resolver==null){
             Assert.assertEquals(received.value, expected.value,
-                    "Value on received additional for condition should match expected value.");;
+                    "Value on received additional for condition should match expected value.");
             return;
         }
         //check if term list name resolver has an appropriate ID for the term list condition
