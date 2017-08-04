@@ -43,7 +43,7 @@ public class ClassificationWorkflowCreateParams {
      * @param workflowBaseDataFileName Path to file containing workflow in JSON format that should be created.
      * @param projectId ProjectId to create workflow under.
      */
-    public ClassificationWorkflowCreateParams(String workflowBaseDataFileName, String projectId){
+    public ClassificationWorkflowCreateParams(final String workflowBaseDataFileName, final String projectId){
         this.workflowBaseDataFileName = workflowBaseDataFileName;
         this.projectId = projectId;
     }
@@ -53,7 +53,7 @@ public class ClassificationWorkflowCreateParams {
      * @param workflowBaseDataFile File containing JSON format workflow to create.
      * @param projectId ProjectId to create workflow under.
      */
-    public ClassificationWorkflowCreateParams(File workflowBaseDataFile, String projectId){
+    public ClassificationWorkflowCreateParams(final File workflowBaseDataFile, final String projectId){
         this.workflowBaseDataFile = workflowBaseDataFile;
         this.projectId = projectId;
     }
@@ -63,15 +63,15 @@ public class ClassificationWorkflowCreateParams {
     }
 
     public String getProjectId(){
-        return this.projectId;
+        return projectId;
     }
 
     public String getWorkflowBaseDataFileName(){
-        return null;
+        return workflowBaseDataFileName;
     }
 
     public File getWorkflowBaseDataFile(){
-        return this.workflowBaseDataFile;
+        return workflowBaseDataFile;
     }
 
     public void setOverwriteExisting(boolean overwriteExisting){

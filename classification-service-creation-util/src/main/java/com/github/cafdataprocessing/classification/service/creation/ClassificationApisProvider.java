@@ -29,7 +29,7 @@ public class ClassificationApisProvider {
     private final TermsApi termsApi;
     private final ClassificationsApi classificationsApi;
 
-    public ClassificationApisProvider(ApiClient apiClient){
+    public ClassificationApisProvider(final ApiClient apiClient){
         workflowsApi = new WorkflowsApi(apiClient);
         classificationRulesApi = new ClassificationRulesApi(apiClient);
         ruleClassificationsApi = new RuleClassificationsApi(apiClient);

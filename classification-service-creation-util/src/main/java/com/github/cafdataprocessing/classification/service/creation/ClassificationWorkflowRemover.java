@@ -49,20 +49,20 @@ public class ClassificationWorkflowRemover {
      *                     will be taken from these elements.
      * @throws ApiException If an error occurs contacting the classification service via the APIs.
      */
-    public static void removeMatching(ClassificationApisProvider apisProvider, String projectId,
-                              CreationJson creationJson) throws ApiException {
-        WorkflowJson workflowToCheck = creationJson.workflow;
+    public static void removeMatching(final ClassificationApisProvider apisProvider, final String projectId,
+                              final CreationJson creationJson) throws ApiException {
+        final WorkflowJson workflowToCheck = creationJson.workflow;
         if(workflowToCheck!=null) {
             removeMatchingWorkflows(apisProvider, projectId, workflowToCheck.name);
         }
-        List<ClassificationJson> classificationsToCheck = creationJson.classifications;
+        final List<ClassificationJson> classificationsToCheck = creationJson.classifications;
         if(classificationsToCheck!=null && !classificationsToCheck.isEmpty()){
             removeMatchingClassifications(apisProvider, projectId, classificationsToCheck
                     .stream()
                     .map(cl -> cl.name)
                     .collect(Collectors.toList()));
         }
-        List<TermListJson> termListsToCheck = creationJson.termLists;
+        final List<TermListJson> termListsToCheck = creationJson.termLists;
         if(termListsToCheck!=null && !termListsToCheck.isEmpty()){
             removeMatchingTermlists(apisProvider, projectId, termListsToCheck
                     .stream()
@@ -82,21 +82,21 @@ public class ClassificationWorkflowRemover {
      * @throws ApiException If an error occurs contacting the classification API. Will occur if a term list that is to be removed
      * is in use on a classification.
      */
-    public static void removeMatchingTermlists(ClassificationApisProvider apisProvider, String projectId,
-                                               List<String> termListNamesToRemove) throws ApiException {
+    public static void removeMatchingTermlists(final ClassificationApisProvider apisProvider, final String projectId,
+                                               final List<String> termListNamesToRemove) throws ApiException {
         LOGGER.info("Checking for existing termlists that should be removed.");
         if(termListNamesToRemove==null || termListNamesToRemove.isEmpty()){
             LOGGER.info("No term list names to check have been provided. Term lists will not be checked.");
             return;
         }
-        TermsApi termsApi = apisProvider.getTermsApi();
-        List<ExistingTermList> existingTermLists = new ArrayList<>();
+        final TermsApi termsApi = apisProvider.getTermsApi();
+        final List<ExistingTermList> existingTermLists = new ArrayList<>();
         {
             int pageNum = 1;
-            int pageSize = 100;
+            final int pageSize = 100;
             LOGGER.debug("Retrieving existing term lists to check their names.");
             while(true){
-                ExistingTermLists retrieveTermListsResult = termsApi.getTermLists(projectId, pageNum, pageSize);
+                final ExistingTermLists retrieveTermListsResult = termsApi.getTermLists(projectId, pageNum, pageSize);
                 existingTermLists.addAll(retrieveTermListsResult.getTermLists());
                 if(retrieveTermListsResult.getTotalHits() <= pageNum*pageSize){
                     break;
@@ -112,7 +112,7 @@ public class ClassificationWorkflowRemover {
         for(ExistingTermList existingTermList: existingTermLists){
             String existingTermListName = existingTermList.getName();
             if(termListNamesToRemove.contains(existingTermListName)){
-                Long existingTermListId = existingTermList.getId();
+                final Long existingTermListId = existingTermList.getId();
                 LOGGER.debug("Existing term list matches name: "+existingTermListName+", has ID: "+
                 existingTermListId+". Term list will be removed.");
                 termsApi.deleteTermList(projectId, existingTermListId);
@@ -133,21 +133,22 @@ public class ClassificationWorkflowRemover {
      * @throws ApiException If an error occurs contacting the classification API. Will occur if a classification that is to be removed
      * is in use on a workflow rule classification.
      */
-    public static void removeMatchingClassifications(ClassificationApisProvider apisProvider, String projectId,
-                                                     List<String> classificationNamesToRemove) throws ApiException {
+    public static void removeMatchingClassifications(final ClassificationApisProvider apisProvider, final String projectId,
+                                                     final List<String> classificationNamesToRemove) throws ApiException {
         LOGGER.info("Checking for existing classifications that should be removed.");
         if(classificationNamesToRemove==null || classificationNamesToRemove.isEmpty()){
             LOGGER.info("No classification names to check have been provided. Classifications will not be checked.");
             return;
         }
-        ClassificationsApi classificationsApi = apisProvider.getClassificationsApi();
-        List<ExistingClassification> existingClassifications = new ArrayList<>();
+        final ClassificationsApi classificationsApi = apisProvider.getClassificationsApi();
+        final List<ExistingClassification> existingClassifications = new ArrayList<>();
         {
             int pageNum = 1;
-            int pageSize = 100;
+            final int pageSize = 100;
             LOGGER.debug("Retrieving existing classifications to check their names.");
             while(true){
-                ExistingClassifications retrieveClassificationsResult = classificationsApi.getClassifications(projectId, pageNum, pageSize);
+                final ExistingClassifications retrieveClassificationsResult =
+                        classificationsApi.getClassifications(projectId, pageNum, pageSize);
                 existingClassifications.addAll(retrieveClassificationsResult.getClassifications());
                 if(retrieveClassificationsResult.getTotalHits() <= pageNum*pageSize){
                     break;
@@ -161,10 +162,11 @@ public class ClassificationWorkflowRemover {
             return;
         }
         for(ExistingClassification existingClassification: existingClassifications){
-            String existingClassificationName = existingClassification.getName();
+            final String existingClassificationName = existingClassification.getName();
             if(classificationNamesToRemove.contains(existingClassificationName)){
-                Long existingClassificationId = existingClassification.getId();
-                LOGGER.debug("Existing classification matches name: "+existingClassificationName+", has ID: "+existingClassificationId+
+                final Long existingClassificationId = existingClassification.getId();
+                LOGGER.debug("Existing classification matches name: "+existingClassificationName+", has ID: "
+                        +existingClassificationId+
                         ". Classification will be removed.");
                 classificationsApi.deleteClassification(projectId, existingClassificationId);
                 LOGGER.debug("Removed classification with ID: "+existingClassificationId);
@@ -182,22 +184,23 @@ public class ClassificationWorkflowRemover {
      * @param workflowNameToRemove If any workflows have a name that matches this value they will be removed.
      * @throws ApiException If an error occurs contacting the classification API.
      */
-    public static void removeMatchingWorkflows(ClassificationApisProvider apisProvider, String projectId,
-                                      String workflowNameToRemove) throws ApiException {
+    public static void removeMatchingWorkflows(final ClassificationApisProvider apisProvider, final String projectId,
+                                               final String workflowNameToRemove) throws ApiException {
         LOGGER.info("Checking for existing classification workflows that should be removed using name: "
                 +workflowNameToRemove);
         if(workflowNameToRemove==null){
-            LOGGER.info("Workflow name to use in checking existing classification workflows to remove cannot be null. Workflows will not be checked.");
+            LOGGER.info("Workflow name to use in checking existing classification workflows to remove cannot be null." +
+                    " Workflows will not be checked.");
             return;
         }
-        WorkflowsApi workflowsApi = apisProvider.getWorkflowsApi();
-        List<ExistingWorkflow> existingWorkflows = new ArrayList<>();
+        final WorkflowsApi workflowsApi = apisProvider.getWorkflowsApi();
+        final List<ExistingWorkflow> existingWorkflows = new ArrayList<>();
         {
             int pageNum = 1;
-            int pageSize = 100;
+            final int pageSize = 100;
             LOGGER.debug("Retrieving existing classification workflows to check their names.");
             while(true) {
-                ExistingWorkflows retrieveWorkflowsResult = workflowsApi.getWorkflows(projectId, pageNum, pageSize);
+                final ExistingWorkflows retrieveWorkflowsResult = workflowsApi.getWorkflows(projectId, pageNum, pageSize);
                 existingWorkflows.addAll(retrieveWorkflowsResult.getWorkflows());
                 //check if there are more workflows to retrieve
                 if(retrieveWorkflowsResult.getTotalHits() <= pageNum*pageSize){
@@ -212,17 +215,18 @@ public class ClassificationWorkflowRemover {
             LOGGER.info("There are no existing classification workflows to remove.");
             return;
         }
-        ClassificationRulesApi classificationRulesApi = apisProvider.getClassificationRulesApi();
+        final ClassificationRulesApi classificationRulesApi = apisProvider.getClassificationRulesApi();
         for(ExistingWorkflow existingWorkflow: existingWorkflows){
-            Long existingWorkflowId = existingWorkflow.getId();
+            final Long existingWorkflowId = existingWorkflow.getId();
             if(existingWorkflow.getName().equals(workflowNameToRemove)){
-                LOGGER.debug("Existing classification workflow matches name: "+workflowNameToRemove+", has ID: "+existingWorkflowId+
+                LOGGER.debug("Existing classification workflow matches name: "+workflowNameToRemove+", has ID: "
+                        +existingWorkflowId+
                         ". Workflow will be removed.");
-                List<ExistingClassificationRule> classificationRulesToRemove = new ArrayList<>();
+                final List<ExistingClassificationRule> classificationRulesToRemove = new ArrayList<>();
                 int pageNum = 1;
-                int pageSize = 100;
+                final int pageSize = 100;
                 while(true) {
-                    ClassificationRules retrieveClassificationRulesResult =
+                    final ClassificationRules retrieveClassificationRulesResult =
                             classificationRulesApi.getClassificationRules(projectId, existingWorkflowId, pageNum, pageSize);
                     classificationRulesToRemove.addAll(retrieveClassificationRulesResult.getClassificationRules());
                     if(retrieveClassificationRulesResult.getTotalHits() <= pageNum*pageSize){
@@ -240,11 +244,13 @@ public class ClassificationWorkflowRemover {
         LOGGER.info("Removed any existing classification workflows with name: "+workflowNameToRemove);
     }
 
-    private static void removeClassificationRules(ClassificationRulesApi classificationRulesApi, String projectId,
-                                                  Long workflowId, List<ExistingClassificationRule> classificationRulesToRemove)
+    private static void removeClassificationRules(final ClassificationRulesApi classificationRulesApi,
+                                                  final String projectId,
+                                                  final Long workflowId,
+                                                  final List<ExistingClassificationRule> classificationRulesToRemove)
             throws ApiException {
         for(ExistingClassificationRule classificationRuleToRemove: classificationRulesToRemove){
-            Long ruleToRemoveId = classificationRuleToRemove.getId();
+            final Long ruleToRemoveId = classificationRuleToRemove.getId();
             LOGGER.debug("Removing classification rule with ID: "+ ruleToRemoveId +
                     " under workflow with ID: "+workflowId);
             classificationRulesApi.deleteClassificationRule(projectId, workflowId, ruleToRemoveId);
