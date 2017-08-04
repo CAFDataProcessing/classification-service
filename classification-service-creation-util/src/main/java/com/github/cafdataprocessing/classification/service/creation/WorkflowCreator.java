@@ -21,8 +21,6 @@ import com.github.cafdataprocessing.classification.service.client.api.*;
 import com.github.cafdataprocessing.classification.service.client.model.*;
 import com.github.cafdataprocessing.classification.service.creation.created.*;
 import com.github.cafdataprocessing.classification.service.creation.jsonobjects.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,9 +33,6 @@ import java.util.stream.Collectors;
  * Creates a classification workflow based on provided input data.
  */
 public class WorkflowCreator {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WorkflowCreator.class);
-
-    private final ApiClient apiClient;
     private final WorkflowsApi workflowsApi;
     private final ClassificationRulesApi classificationRulesApi;
     private final RuleConditionsApi ruleConditionsApi;
@@ -70,7 +65,7 @@ public class WorkflowCreator {
      */
     public WorkflowCreator(String classificationApiUrl, TermListNameResolver termListNameResolver,
                            ClassificationNameResolver classificationNameResolver){
-        apiClient = new ApiClient();
+        final ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(classificationApiUrl);
         this.apisProvider = new ClassificationApisProvider(apiClient);
         workflowsApi = apisProvider.getWorkflowsApi();
