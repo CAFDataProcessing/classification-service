@@ -127,6 +127,22 @@ function getConditionByIdFromClassificationRuleRootCondition(conditionObject, id
         return nestedConditionsResult;
       }
     }
+    //if this is a not condition check if the ID is for a condition it negates
+    if(childCondition.additional.type === 'not'){
+      var negatedCondition = childCondition.additional.condition;
+      if(negatedCondition===null || negatedCondition===undefined){
+        return null;
+      }
+      if(negatedCondition.id===idToFind){
+        return negatedCondition;
+      }
+      if(negatedCondition.additional.type === 'boolean'){
+        var nestedNegatedConditionResult = getConditionByIdFromClassificationRuleRootCondition(negatedCondition, idToFind);
+        if(nestedNegatedConditionResult!==null){
+          return nestedNegatedConditionResult;
+        }
+      }
+    }
   }  
   return null;
 }
