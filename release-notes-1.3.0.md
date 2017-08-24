@@ -1,8 +1,10 @@
-!not-ready-for-release!
-
 #### Version Number
 ${version-number}
 
 #### New Features
+
+#### Bug Fixes
+- [CAF-3352](https://jira.autonomy.com/browse/CAF-3352): Not condition children underneath Not conditions could not be edited.
+  When a Not condition was created with `condition` set to another Not condition it was not possible to edit the next level of conditions being negated. This has been fixed to allow Rule Condition API calls to retrieve conditions at all levels in the Not chain.
 
 #### Known Issues
