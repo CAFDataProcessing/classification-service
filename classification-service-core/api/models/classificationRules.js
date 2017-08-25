@@ -245,7 +245,7 @@ function update(updateParams){
       name: updateParams.name,
       description: updateParams.description
     };
-    return colSeqModel.update(updateParams.project_id, updateColSeqParams);
+    return colSeqModel.update(updateParams.project_id, updateColSeqParams, colSeqModel.defaults.updateBehaviour.add);
   })
   .then(function(updatedColSeq){
     logger.debug("Updated Collection Sequence with ID: "+updateParams.id);
