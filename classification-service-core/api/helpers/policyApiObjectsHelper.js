@@ -101,15 +101,20 @@ function checkLexiconExpressionsIdsOnLexicon(lexicon, idsToCheck){
   return notFoundIDs;
 }
 
-//takes in a Classification Rule Root condition and looks in its children for a Condition matching the ID passed in. Returns null if condition not found otherwise returns the matching condition.
 function getConditionByIdFromClassificationRuleRootCondition(conditionObject, idToFind){
+  logger.debug(function(){return "Checking for condition ID: "+idToFind+" on Rule Root Condition ID: "+conditionObject.id;});
+  return getConditionByIdFromBooleanCondition(conditionObject, idToFind);
+}
+
+//takes in a Classification Rule Root condition and looks in its children for a Condition matching the ID passed in. Returns null if condition not found otherwise returns the matching condition.
+function getConditionByIdFromBooleanCondition(conditionObject, idToFind){
   var isValid = checkConditionHasChildrenProperty(conditionObject);
   if(!isValid){
-    logger.error("Policy condition passed as Root Rule condition was not valid.");
+    logger.error("Policy boolean condition passed was not valid.");
     throw "Unable to retrieve condition.";
   }
   if(conditionObject.additional.children===null){
-    logger.warn("Policy condition passed as Root Rule condition has 'children' set to null.");
+    logger.warn("Policy boolean condition passed has 'children' set to null.");
     return null;
   }
   for(var childCondition of conditionObject.additional.children){
@@ -122,28 +127,47 @@ function getConditionByIdFromClassificationRuleRootCondition(conditionObject, id
     }    
     //if this is a boolean condition check its children also
     if(childCondition.additional.type === 'boolean'){
-      var nestedConditionsResult = getConditionByIdFromClassificationRuleRootCondition(childCondition, idToFind);
+      var nestedConditionsResult = getConditionByIdFromBooleanCondition(childCondition, idToFind);
       if(nestedConditionsResult!==null){
         return nestedConditionsResult;
       }
     }
     //if this is a not condition check if the ID is for a condition it negates
     if(childCondition.additional.type === 'not'){
-      var negatedCondition = childCondition.additional.condition;
-      if(negatedCondition===null || negatedCondition===undefined){
-        return null;
-      }
-      if(negatedCondition.id===idToFind){
-        return negatedCondition;
-      }
-      if(negatedCondition.additional.type === 'boolean'){
-        var nestedNegatedConditionResult = getConditionByIdFromClassificationRuleRootCondition(negatedCondition, idToFind);
-        if(nestedNegatedConditionResult!==null){
-          return nestedNegatedConditionResult;
-        }
+      var notConditionResult = getConditionByIdFromNotCondition(childCondition, idToFind);
+      if(notConditionResult!==null){
+        return notConditionResult;
       }
     }
   }  
+  return null;
+}
+
+//checks if a not condition matches the specified ID or if its negated condition matches the specified ID.
+//If the negated condition has further conditions e.g. is a Boolean or another Not condition, those IDs will also be checked.
+function getConditionByIdFromNotCondition(notConditionObject, idToFind){
+  if(notConditionObject.id===idToFind){
+    return notConditionObject;
+  }  
+  var negatedCondition = notConditionObject.additional.condition;
+  if(negatedCondition===null || negatedCondition===undefined){
+    return null;
+  }
+  if(negatedCondition.id===idToFind){
+    return negatedCondition;
+  }
+  if(negatedCondition.additional.type === 'boolean'){
+    var nestedNegatedBooleanConditionResult = getConditionByIdFromBooleanCondition(negatedCondition, idToFind);
+    if(nestedNegatedBooleanConditionResult!==null){
+      return nestedNegatedBooleanConditionResult;
+    }
+  }
+  if(negatedCondition.additional.type === 'not'){
+    var nestedNegatedNotConditionResult = getConditionByIdFromNotCondition(negatedCondition, idToFind);
+    if(nestedNegatedNotConditionResult!==null){
+      return nestedNegatedNotConditionResult;
+    }
+  }
   return null;
 }
 
