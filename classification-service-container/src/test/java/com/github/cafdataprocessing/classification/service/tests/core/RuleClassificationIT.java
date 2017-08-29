@@ -261,6 +261,39 @@ public class RuleClassificationIT {
         pageSize = 5;
         pageThroughRuleClassifications(pageSize, workflowId, classificationRuleId_3, createdRCs, numberOfRCsToCreate);
     }
+    
+    @Test(description = "Checks that updating a classification rule does not delete the child rule classifications on it.")
+    public void updateClassificationRuleAndCheckRuleClassifications() throws ApiException {
+        int numberOfRCsToCreate = 26;
+
+        ExistingWorkflow createdWorkflow = ObjectsCreator.createWorkflow(projectId);
+        long workflowId = createdWorkflow.getId();
+        ExistingClassificationRule createdClassificationRule_1 = ObjectsCreator.createClassificationRule(projectId,
+                workflowId, null);
+        long classificationRuleId_1 = createdClassificationRule_1.getId();
+
+        ExistingClassification createdClassification_1 = createClassification();
+        long createdClassificationId_1 = createdClassification_1.getId();
+
+        List<ExistingRuleClassification> createdRCs = createMultipleRuleClassifications(numberOfRCsToCreate, workflowId,
+                classificationRuleId_1, createdClassificationId_1);
+
+        //take a copy of this for use later
+        List<ExistingRuleClassification> copyOfFirstRuleClassifications = new LinkedList<>();
+        copyOfFirstRuleClassifications.addAll(createdRCs);
+
+        //page through the rule classifications
+        int pageSize = 5;
+        pageThroughRuleClassifications(pageSize, workflowId, classificationRuleId_1, createdRCs, numberOfRCsToCreate);
+        
+        //update the classification rule and verify rule classifications are unchanged
+        createdClassification_1.setDescription("Updated description.");
+        classificationRulesApi.updateClassificationRule(projectId, workflowId, classificationRuleId_1,
+                createdClassificationRule_1);
+
+        pageThroughRuleClassifications(pageSize, workflowId, classificationRuleId_1, copyOfFirstRuleClassifications,
+                numberOfRCsToCreate);
+    }
 
     private List<ExistingRuleClassification> createMultipleRuleClassifications(int numberOfRCsToCreate, long workflowId,
                                                                                 long classificationRuleId_1,
